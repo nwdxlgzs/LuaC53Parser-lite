@@ -64,32 +64,16 @@ public class TValue {
     }
 
     public static TValue createNil() {
-        if (NIL == null) {
-            TValue tv = new TValue();
-            tv.tt_ = LUA_TNIL;
-            return tv;
-        }
-        return NIL;
+        TValue tv = new TValue();
+        tv.tt_ = LUA_TNIL;
+        return tv;
     }
 
     public static TValue createBoolean(boolean b) {
-        if(b){
-            if(TRUE == null){
-                TValue tv = new TValue();
-                tv.tt_ = LUA_TBOOLEAN;
-                tv.value_ = true;
-                return tv;
-            }
-            return TRUE;
-        }else{
-            if(FALSE == null){
-                TValue tv = new TValue();
-                tv.tt_ = LUA_TBOOLEAN;
-                tv.value_ = false;
-                return tv;
-            }
-            return FALSE;
-        }
+        TValue tv = new TValue();
+        tv.tt_ = LUA_TBOOLEAN;
+        tv.value_ = b;
+        return tv;
     }
 
     public static TValue createNumber(double d) {
