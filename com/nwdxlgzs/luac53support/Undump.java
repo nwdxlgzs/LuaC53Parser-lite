@@ -21,14 +21,6 @@ public class Undump extends defines {
         int i;
         for (i = 0; i < LUA_SIGNATURE.length; i++) {
             if (readByte() != LUA_SIGNATURE[i]) {
-                FileOutputStream fos = null;
-                try {
-                    fos = new FileOutputStream("/storage/emulated/0/usefordeclua/Dfile.lua");
-                    fos.write(data);
-                    fos.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
                 throw new RuntimeException("不是一个LuaC文件");
             }
         }
