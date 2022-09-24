@@ -6,7 +6,7 @@
 * 本身javaAPI应该没有人不会吧？我就不给demo了，有人应该有Lua需求，我这里贴一份luajava借助interface的基础包装：
 ```lua
 BUFF=DecTool.decrypt(BUFF,DecInterface{
-   BufferAppendSize=function(...)
+   VirtualMemorySize=function(...)
     return int(0);
   end;
   requireLuaCParse=function(...)
