@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class Undump extends defines {
     private byte[] data;
@@ -72,14 +73,14 @@ public class Undump extends defines {
     }
 
     private void readCode(Proto f) {
-        boolean need_replace_op = decInterface.OPMapReplace() != null;
+        HashMap<Integer, Integer> replace_op = decInterface.OPMapReplace();
         int n = decInterface.IntDecrypt((int) readInt());
         n = decInterface.NDecrypt(n, "sizecode");
         f.sizecode = n;
         for (int i = 0; i < n; i++) {
             Instruction I = decInterface.InstructionDecrypt(new Instruction(readInstruction()));
-            if (need_replace_op) {
-                Integer newopcode = decInterface.OPMapReplace().get(I.opcode);
+            if (replace_op != null) {
+                Integer newopcode = replace_op.get(I.opcode);
                 if (newopcode != null) {
                     I.opcode = newopcode;
                     I.value = SET_OPCODE(I.value, newopcode);
