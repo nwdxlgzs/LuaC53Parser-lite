@@ -9,7 +9,7 @@ BUFF=DecTool.decrypt(BUFF,DecInterface{
   requireLuaCParse=function(...)
     return false;
   end;
-  requireStrip=function()
+  requireStrip=function(...)
     return false;
   end;
   LuaCPreProcess=function(...)
