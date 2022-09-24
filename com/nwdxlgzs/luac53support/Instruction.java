@@ -3,15 +3,15 @@ package com.nwdxlgzs.luac53support;
 import static com.nwdxlgzs.luac53support.defines.*;
 
 public class Instruction {
-    public int value;
-    public int opcode;
+    public int value = 0;
+    public int opcode = 0;
     public OPCode opName;
-    public int A;
-    public int B;
-    public int C;
-    public int Bx;
-    public int sBx;
-    public int Ax;
+    public int A = 0;
+    public int B = 0;
+    public int C = 0;
+    public int Bx = 0;
+    public int sBx = 0;
+    public int Ax = 0;
 
     public Instruction(int instruction) {
         value = instruction;

@@ -1,9 +1,9 @@
 package com.nwdxlgzs.luac53support;
 
 public class LocVar {
-    public TValue varname;
-    public int startpc;
-    public int endpc;
+    public TValue varname = TValue.NIL;
+    public int startpc = 0;
+    public int endpc = 0;
 
     public LocVar() {
     }
