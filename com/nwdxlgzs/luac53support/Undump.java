@@ -23,13 +23,22 @@ public class Undump extends defines {
 
     private byte[] readBlock(int size) {
         if (pos + size > data.length) {
-            throw new RuntimeException("读取数据溢出！企图从" + pos + "读取长度为" + size + "的数据（已经溢出），但是数据长度为" + data.length);
+            if (pos + size > data.length + decInterface.VirtualMemorySize()) {//VirtualMemorySize虚拟扩容，包装读取正常（C的Lua会内存溢出去读，通常在malloc块没有报错）
+                throw new RuntimeException("读取数据溢出！企图从" + pos + "读取长度为" + size +
+                        "的数据（已经溢出），但是实际数据长度为" + data.length + "，虚拟扩容为" + decInterface.VirtualMemorySize());
+            } else {
+                byte[] block = new byte[size];
+                System.arraycopy(data, pos, block, 0, data.length - pos);
+                pos = data.length;
+                return block;
+            }
+        } else {
+            byte[] block = new byte[size];
+            System.arraycopy(data, pos, block, 0, size);
+            pos += size;
+            block = decInterface.BlockDecrypt(block);
+            return block;
         }
-        byte[] block = new byte[size];
-        System.arraycopy(data, pos, block, 0, size);
-        pos += size;
-        block = decInterface.BlockDecrypt(block);
-        return block;
     }
 
     private void readHeader() {

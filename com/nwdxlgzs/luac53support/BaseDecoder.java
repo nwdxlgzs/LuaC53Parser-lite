@@ -4,6 +4,11 @@ import java.util.HashMap;
 
 public class BaseDecoder implements DecInterface {
     @Override
+    public int VirtualMemorySize() {
+        return 0;
+    }
+
+    @Override
     public boolean requireLuaCParse() {
         return false;
     }

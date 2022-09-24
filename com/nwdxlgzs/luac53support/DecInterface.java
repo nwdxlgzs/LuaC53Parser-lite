@@ -3,6 +3,9 @@ package com.nwdxlgzs.luac53support;
 import java.util.HashMap;
 
 public interface DecInterface {
+    //存在畸形字节码借助内存分配剩余空间的情况，所以我直接提供一个非常暴力的方法，强行额外分配空间（只在LuaC结构解析时进行虚拟扩容）
+    int VirtualMemorySize();
+
     //是否进入LuaC结构解析（如果只是LuaC整体加解密不用搞解析，返回false将不进行下方一些API执行）
     boolean requireLuaCParse();
 
