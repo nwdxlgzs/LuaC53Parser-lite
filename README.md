@@ -19,7 +19,7 @@ new BaseDecoder() {//修正某种防导入unluac的字节码
 * Lua:(luajava借助interface的基础包装)
 ```lua
 BUFF=DecTool.decrypt(BUFF,DecInterface{
-   VirtualMemorySize=function(...)
+  VirtualMemorySize=function(...)
     return int(0);
   end;
   requireLuaCParse=function(...)
