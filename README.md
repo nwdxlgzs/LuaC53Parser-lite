@@ -2,8 +2,21 @@
 轻量级的LuaC53序列化和反序列化解析工具
 > 注意！本身工具做了解密API包装，你可以对BaseDecoder覆写，进行自动解密
 
+* Java
+```java
+new BaseDecoder() {//修正某种防导入unluac的字节码
+   @Override
+   public int VirtualMemorySize() {
+      return buff.length;//一倍拓容
+   }
+   @Override
+   public boolean requireLuaCParse() {
+      return true;
+   }
+});
+```
 
-* 本身javaAPI应该没有人不会吧？我就不给demo了，有人应该有Lua需求，我这里贴一份luajava借助interface的基础包装：
+* Lua:(luajava借助interface的基础包装)
 ```lua
 BUFF=DecTool.decrypt(BUFF,DecInterface{
    VirtualMemorySize=function(...)
